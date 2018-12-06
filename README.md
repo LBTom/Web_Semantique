@@ -6,6 +6,6 @@ Projet de Web Sémantique 2018 sur les glissements de terrein dans le monde
 * [Données originelle en CSV](https://public.opendatasoft.com/explore/dataset/landslide/information/?sort=date)
 
 ### Auteurs
-Tom LE BERRE,
-Axel RAMBAUD,
-Nicolas VANNIER
+Tom LE BERRE,Axel RAMBAUD, Nicolas VANNIER
+M1 Informatique, Université de Nantes
+2018/2019
