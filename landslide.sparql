@@ -1,0 +1,28 @@
+PREFIX schema: <http://schema.org/>
+PREFIX moac: <http://www.observedchange.com/moac/ns#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX dbpa: <http://dbpedia.org/page/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+CONSTRUCT {
+  ?LandSlide a moac:Landslides;
+  schema:GeoCoordinates ?geopoint;
+  schema:Country ?country;
+  dbo:NaturalEvent ?landslide;
+  dbo:casualties ?fatalities;
+  dbpa:Injury ?injuries;
+  dbo:causedBy ?trigger;
+  dbo:AdministrativeRegion ?admin;
+  dbo:Media ?sourcename;
+  dbo:date ?date;
+  moac:AffectedPopulation ?population;
+  schema:Location ?near;
+}
+FROM <file:landslide.csv#delimiter=semicolon>
+WHERE{
+  BIND(URI(?id) as ?LandSlide)
+  BIND(xsd:dateTime(?date) as ?DATETIME)
+  BIND(xsd:integer(?fatalities) as ?DEATH)
+  BIND(xsd:integer(?injuries) as ?WOUNDED)
+  BIND(xsd:integer(?population) as ?POPULATION)
+}
