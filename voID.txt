@@ -1,0 +1,48 @@
+PREFIX dcterms: <http://purl.org/dc/terms/> .
+PREFIX void: <http://rdf.org/ns/void#> .
+PREFIX foaf: <http://xmlns.com/foaf/0.1/> .
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX rdf: <http://www.w3.org/2000/01/rdf-schema#>
+
+:Landslide        a                         void:Dataset;
+                    dcterms:title             "Catalogue mondial des glissements de terrain";
+                    dcterms:description       "Catalogue mondial des glissements de terrain";
+                    dcterms:creator           :CreatorPen;
+                    dcterms:publisher         :Le-Berre_Tom;
+                    dcterms:publisher         :Rambaud_Axel;
+                    dcterms:publisher         :Vannier_Nicolas;
+                    dcterms:contributor       :Univ_Nantes;
+                    dcterms:source            :source;
+                    dcterms:created           "2018-10-23"^^xsd:date;  
+                    dcterms:modified          "2018-11-28"^^xsd:date ;
+                    dcterms:license           <http://www.opendatacommons.org/licenses/pddl/> ;
+                    void:feature              <http://www.w3.org/ns/formats/Turtle>;
+                    void:entities	          6788;                
+                    void:vocabulary           <http://schema.org/>;
+                    void:vocabulary           <http://www.observedchange.com/moac/ns#>;
+                    void:vocabulary 		  <http://dbpedia.org/ontology/>;
+                    void:vocabulary			  <http://dbpedia.org/page/>
+                    void:vocabulary			  <http://www.w3.org/2001/XMLSchema#>.
+
+
+:source             rdf:resource              foaf:Person;
+                    rdf:label                 "Lien de téléchargement du dataset";
+                    foaf:homepage             <https://public.opendatasoft.com/explore/dataset/landslide/export/?sort=date>.
+
+:Univ_Nantes        a                         foaf:Organization;
+                    rdf:label                 "Université de Nantes";
+                    foaf:homepage             <http://www.univ-nantes.fr>.
+
+:Le-Berre_Tom		a                         foaf:Person;
+                    rdf:label                 "LE BERRE Tom";
+                    foaf:mbox                 <tom.le-berre@etu.univ-nantes.fr>.
+
+:Rambaud_Axel   	a                         foaf:Person;
+                    rdf:label                 "RAMBAUD Axel";
+                    foaf:mbox                 <axel.rambaud1@etu.univ-nantes.fr>.
+
+:Vannier_Nicolas	a                         foaf:Person;
+                    rdf:label                 "VANNIER Nicolas";
+                    foaf:mbox                 <nicolas.vannier@etu.univ-nantes.fr>.
+
+
