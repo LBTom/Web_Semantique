@@ -46,23 +46,19 @@ public class main {
         /********************************************************************************************/
         
        String queryString2 =
-                "PREFIX geo: <http://www.w3.org/2003/01/geo#>"+
-                "PREFIX frapo: <http://purl.org/cerif/frapo/>"+
-                "PREFIX nh: <http://www.w3.org/ns#>"+
-                "PREFIX dbpac: <http://dbpedia.org/page/Category:>"+
-                "PREFIX sosa: <http://www.w3.org/ns/sosa#>"+
-                "PREFIX schema: <http://schema.org/> "+
-                "PREFIX moac: <http://www.observedchange.com/moac/ns#> "+
-                "PREFIX dbo: <http://dbpedia.org/ontology#> "+
-                "PREFIX dbpa: <http://dbpedia.org/page/> "+
-                "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
-                "PREFIX rdf: <https://www.w3.org/TR/rdf-schema#> "+
-                "SELECT ?country (COUNT(DISTINCT ?landslide) AS ?countlandslide) (COUNT(DISTINCT ?earthquake) AS ?countearthquake) WHERE {"+
-                "?landslide a moac:Landslides . ?landslide schema:Country ?country1 ."+
-                "BIND(UCASE(?country1) AS ?country) ."+
-                "?earthquake a dbo:Earthquake . ?earthquake dbo:locationCountry ?country}"+
-                "GROUP BY ?country ORDER BY ASC(?country) LIMIT 10";
-	
+    		   "PREFIX geo: <http://www.w3.org/2003/01/geo#>"+
+    	       "PREFIX frapo: <http://purl.org/cerif/frapo/>"+
+    	       "PREFIX nh: <http://www.w3.org/ns#>"+
+    	       "PREFIX dbpac: <http://dbpedia.org/page/Category:>"+
+    	       "PREFIX sosa: <http://www.w3.org/ns/sosa#>"+
+    	       "PREFIX schema: <http://schema.org/> "+
+    	       "PREFIX moac: <http://www.observedchange.com/moac/ns#> "+
+    	       "PREFIX dbo: <http://dbpedia.org/ontology#> "+
+    	       "PREFIX dbpa: <http://dbpedia.org/page/> "+
+    	       "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
+    	       "PREFIX rdf: <https://www.w3.org/TR/rdf-schema#> "+
+    	       "SELECT ?date ?country ?casualties WHERE {?landslide a moac:Landslides . ?landslide dbo:date ?date . ?landslide schema:Country ?country . ?landslide dbo:casualties ?casualtiestmp . BIND(xsd:integer(?casualtiestmp) AS ?casualties)} ORDER BY DESC(?casualties) LIMIT 10";
+
        
        /********************************************************************************************/
        /* 																							*/
@@ -85,7 +81,7 @@ public class main {
                 "PREFIX dbpa: <http://dbpedia.org/page/> "+
                 "PREFIX xsd: <http://www.w3.org/2001/XMLSchema#> "+
                 "PREFIX rdf: <https://www.w3.org/TR/rdf-schema#> "+
-                "SELECT ?country (COUNT(DISTINCT ?lanslide) AS ?countlandslide) (COUNT(DISTINCT ?earthquake) AS ?countearthquake)\r\n" + 
+                "SELECT ?country (COUNT(DISTINCT ?landslide) AS ?countlandslide) (COUNT(DISTINCT ?earthquake) AS ?countearthquake)\r\n" + 
                 "WHERE { \r\n" + 
                 "?landslide a moac:Landslides . \r\n" + 
                 "?landslide schema:Country ?country1 . BIND(UCASE(?country1) AS ?country) . ?earthquake a dbo:Earthquake . \r\n" + 
@@ -98,7 +94,7 @@ public class main {
        
        
        Query query1 = QueryFactory.create(queryString1);
-       QueryExecution qexec1 = QueryExecutionFactory.create(query1, unifiedmodel);
+       QueryExecution qexec1 = QueryExecutionFactory.create(query1, model);
 
        ResultSet results1 = qexec1.execSelect();
        ResultSetFormatter.out(System.out,results1,query1);
@@ -107,7 +103,7 @@ public class main {
        
        
        Query query2 = QueryFactory.create(queryString2);
-       QueryExecution qexec2 = QueryExecutionFactory.create(query2, unifiedmodel);
+       QueryExecution qexec2 = QueryExecutionFactory.create(query2, model);
 
        ResultSet results2 = qexec2.execSelect();
        ResultSetFormatter.out(System.out,results2,query2);
